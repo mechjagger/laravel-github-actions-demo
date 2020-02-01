@@ -56,5 +56,5 @@ $response = $kernel->handle(
 );
 
 $response->send();
-
+echo "test";
 $kernel->terminate($request, $response);
