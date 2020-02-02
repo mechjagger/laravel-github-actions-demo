@@ -1,4 +1,4 @@
-name: test
+name: PHP Unit Test
 
 on: push
 
@@ -14,9 +14,12 @@ jobs:
     - name: Composer dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-    - name: Prepare Laravel Application
-      run: |
-        cp .env.example .env
-        php artisan key:generate
-    - name: Run Testsuite
-      run: vendor/bin/phpunit tests/
+    - name: Run PHP
+    - uses: ./run-phpunit
+
+#    - name: Prepare Laravel Application
+#      run: |
+#        cp .env.example .env
+#        php artisan key:generate
+#    - name: Run Testsuite
+#      run: vendor/bin/phpunit tests/
