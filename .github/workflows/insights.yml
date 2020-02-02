@@ -1,0 +1,26 @@
+name: PHP insights
+
+on: push
+
+jobs:
+  phpinsights:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Composer dependencies
+      run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+#    - name: phpinsights
+#      uses: ./run-insights
+#      with:
+#        args: -v --min-quality=80 --min-complexity=80 --min-architecture=80 --min-style=80
+
+      - name: phpinsights
+        with:
+          args: -v --min-quality=80 --min-complexity=80 --min-architecture=80 --min-style=80
+        run: |
+          php artisan insights -n $*
